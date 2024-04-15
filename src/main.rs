@@ -28,5 +28,7 @@ async fn main() {
     let chat_id =
         env::var("telegram_to").expect("Add environment telegram_to:${{ secrets.telegram_to }}");
 
-    send_message_to_telegram(token, chat_id, message).await;
+    let message_thread_id = env::var("message_thread_id").ok();
+
+    send_message_to_telegram(token, chat_id, message, message_thread_id).await;
 }
