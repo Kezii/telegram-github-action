@@ -16,17 +16,20 @@ pub async fn send_message_to_telegram(
     let chat_id = chat_id.parse::<i64>().unwrap();
     let chat_id: ChatId = ChatId(chat_id);
 
-    let sm = teloxide_bot
-        .send_message(chat_id, text)
-        .disable_web_page_preview(true);
-
-    let s = if let Some(message_thread_id) = message_thread_id {
-        sm.message_thread_id(message_thread_id.parse::<i32>().unwrap())
+    let res = if let Some(message_thread_id) = message_thread_id {
+        teloxide_bot
+            .send_message(chat_id, text)
+            .disable_web_page_preview(true)
+            .message_thread_id(message_thread_id.parse::<i32>().unwrap())
+            .await
+            .unwrap()
     } else {
-        sm
+        teloxide_bot
+            .send_message(chat_id, text)
+            .disable_web_page_preview(true)
+            .await
+            .unwrap()
     };
 
-    let res = s.await.unwrap();
-
-    println!("{:?}", res);
+    println!("{:#?}", res);
 }
