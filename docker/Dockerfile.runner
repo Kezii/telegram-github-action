@@ -2,4 +2,5 @@ FROM debian:bullseye-slim
 
 COPY telegram-github-acttion /telegram-github-acttion
 RUN chmod +x /telegram-github-acttion
+RUN apt-get update && apt-get install -y libssl-dev ca-certificates && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT /telegram-github-acttion
