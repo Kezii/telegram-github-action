@@ -8,9 +8,13 @@ inputs:
   telegram_token:
     description: Telegram bot token
     required: true
+  telegram_message_thread_id:
+    description: Telegram message thread id
+    required: false
 runs: 
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker/Dockerfile.runner'
+  
 branding:
   icon: 'align-justify'  
   color: 'blue'
