@@ -21,7 +21,13 @@ async fn test_send_message() {
 #[tokio::test]
 async fn test_send_push_message() {
     let message = process_push_event(read_to_string("docs/push.json").unwrap());
-    send_message_to_telegram(TOKEN.to_string(), CHAT_ID.to_string(), message, Some(MESSAGE_THREAD_ID.to_string())).await;
+    send_message_to_telegram(
+        TOKEN.to_string(),
+        CHAT_ID.to_string(),
+        message,
+        Some(MESSAGE_THREAD_ID.to_string()),
+    )
+    .await;
 }
 
 #[tokio::test]

@@ -20,6 +20,7 @@ pub async fn send_message_to_telegram(
         teloxide_bot
             .send_message(chat_id, text)
             .disable_web_page_preview(true)
+            .disable_notification(true)
             .message_thread_id(message_thread_id.parse::<i32>().unwrap())
             .await
             .unwrap()
@@ -27,6 +28,7 @@ pub async fn send_message_to_telegram(
         teloxide_bot
             .send_message(chat_id, text)
             .disable_web_page_preview(true)
+            .disable_notification(true)
             .await
             .unwrap()
     };
